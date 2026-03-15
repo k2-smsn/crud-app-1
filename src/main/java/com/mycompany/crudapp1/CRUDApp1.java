@@ -6,7 +6,9 @@ package com.mycompany.crudapp1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -19,8 +21,16 @@ public class CRUDApp1 {
         String user = "k2";
         String password = "k20518";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+        Connection conn = DriverManager.getConnection(url, user, password);
+        Statement statement =  conn.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM players");
+        
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            System.out.println(id + " " + name);
         }
+        
+        
     }
 }
