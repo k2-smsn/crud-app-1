@@ -31,6 +31,10 @@ public class CRUDApp1 {
             System.out.println(id + " " + name);
         }
         
+        conn.close();
+        statement.close();
+        resultSet.close();
+        
         
     }
 }
