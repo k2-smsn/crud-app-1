@@ -6,6 +6,7 @@ package com.mycompany.crudapp1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,10 +21,18 @@ public class CRUDApp1 {
         String url = "jdbc:postgresql://localhost:5432/k2";
         String user = "k2";
         String password = "k20518";
+        
+        int column = 1;
 
         Connection conn = DriverManager.getConnection(url, user, password);
-        Statement statement =  conn.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM players");
+        PreparedStatement statement =  conn.prepareStatement("SELECT * FROM players WHERE id = ?");
+        
+        //Handle placeholders (?)
+        statement.setInt(1, column);
+        
+        //Execute query
+        ResultSet resultSet = statement.executeQuery();
+        
         
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
@@ -31,10 +40,9 @@ public class CRUDApp1 {
             System.out.println(id + " " + name);
         }
         
-        conn.close();
-        statement.close();
         resultSet.close();
-        
+        statement.close();
+        conn.close();
         
     }
 }
