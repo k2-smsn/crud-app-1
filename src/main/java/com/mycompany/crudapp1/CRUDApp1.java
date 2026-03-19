@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -21,23 +20,28 @@ public class CRUDApp1 {
         String url = "jdbc:postgresql://localhost:5432/k2";
         String user = "k2";
         String password = "k20518";
-        
-        int column = 1;
 
         Connection conn = DriverManager.getConnection(url, user, password);
-        PreparedStatement statement =  conn.prepareStatement("SELECT * FROM players WHERE id = ?");
+        PreparedStatement pStatement1 = conn.prepareStatement("INSERT INTO players (name, time_in_sec) VALUES (?, ?)");
+        PreparedStatement statement =  conn.prepareStatement("SELECT * FROM players");
         
         //Handle placeholders (?)
-        statement.setInt(1, column);
+        pStatement1.setString(1, "frince");
+        pStatement1.setDouble(2, 24.2);
+        //statement.setInt(1, column);
         
         //Execute query
+        pStatement1.executeUpdate();
         ResultSet resultSet = statement.executeQuery();
         
+        System.out.println("id Name time_in_sec");
+        System.out.println("-----------------------------");
         
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String name = resultSet.getString("name");
-            System.out.println(id + " " + name);
+            double time_in_sec = resultSet.getDouble("time_in_sec");
+            System.out.println(id + " " + name + " " + time_in_sec);
         }
         
         resultSet.close();
