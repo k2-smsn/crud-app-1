@@ -73,6 +73,28 @@ public class PlayersDAO {
         return players;
     }
     
+    public void updateName(int id, String new_name) {
+        try (
+            Connection conn = DriverManager.getConnection(url, user, password); 
+            PreparedStatement ps = conn.prepareStatement("UPDATE players SET name = ? WHERE id = ?")) {
+            ps.setString(1, new_name);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } 
+        catch (Exception e) {}
+    }
+    
+    public void updateTime(int id, double new_time) {
+        try (
+            Connection conn = DriverManager.getConnection(url, user, password); 
+            PreparedStatement ps = conn.prepareStatement("UPDATE players SET time_in_sec = ? WHERE id = ?")) {
+            ps.setDouble(1, new_time);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } 
+        catch (Exception e) {}
+    }
+    
     
     
 }

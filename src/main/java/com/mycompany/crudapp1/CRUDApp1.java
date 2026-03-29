@@ -20,17 +20,15 @@ public class CRUDApp1 {
     public static void main(String[] args) throws SQLException {
         PlayersDAO dao = new PlayersDAO();
         
-        /*
         List<Player> ps = dao.getAllPlayers();
         
         System.out.println("ID  NAME     TIME_IN_SEC");
         for (Player p : ps) {
             System.out.println(p.getId() + "   " + p.getName() +  " " + p.getTime_in_sec());
         }
-        */
         
-        Player p = dao.getPLayerById(2);
-        System.out.println(p.getId() + "   " + p.getName() +  " " + p.getTime_in_sec());
+        
+        
         
     }
 }
