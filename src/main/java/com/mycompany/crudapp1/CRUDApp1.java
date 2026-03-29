@@ -17,7 +17,7 @@ import java.util.List;
 public class CRUDApp1 {
     
     public static void main(String[] args) throws SQLException {
-        PlayersDAO dao = new PlayersDAO();
+        PlayersDAOImp dao = new PlayersDAOImp();
         
         List<Player> ps = dao.getAllPlayers();
         
