@@ -30,10 +30,11 @@ public class PlayersDAO {
             ps.executeUpdate();
         } 
         catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
     
-    public Player getPLayerById(int id) {
+    public Player getPlayerById(int id) {
         Player player = null;
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
@@ -45,11 +46,13 @@ public class PlayersDAO {
                 player = new Player(rs.getInt("id"), rs.getString("name"), rs.getDouble("time_in_sec"));
             }
             catch(Exception e) {
-                System.out.println("entity with that id does not exist");
+                throw new RuntimeException(e);
             }
             
         } 
-        catch (Exception e) {}
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         
         return player;
     }
@@ -68,9 +71,24 @@ public class PlayersDAO {
             }
         } 
         catch (Exception e) {
+            throw new RuntimeException(e);
         }
         
         return players;
+    }
+    
+    public void updateRow(Player p) {
+        try (
+            Connection conn = DriverManager.getConnection(url, user, password); 
+            PreparedStatement ps = conn.prepareStatement("UPDATE players SET name = ?, time_in_sec = ? WHERE id = ?")) {
+            ps.setString(1, p.getName());
+            ps.setDouble(2, p.getTime_in_sec());
+            ps.setInt(3, p.getId());
+            ps.executeUpdate();
+        } 
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public void updateName(int id, String new_name) {
@@ -81,7 +99,9 @@ public class PlayersDAO {
             ps.setInt(2, id);
             ps.executeUpdate();
         } 
-        catch (Exception e) {}
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public void updateTime(int id, double new_time) {
@@ -92,7 +112,9 @@ public class PlayersDAO {
             ps.setInt(2, id);
             ps.executeUpdate();
         } 
-        catch (Exception e) {}
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public void deleteRow(int id) {
@@ -102,7 +124,9 @@ public class PlayersDAO {
             ps.setInt(1, id);
             ps.executeUpdate();
         } 
-        catch (Exception e) {System.out.println("entity with that id does not exist");}
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     
     
