@@ -7,6 +7,8 @@ package com.mycompany.crudapp1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +31,25 @@ public class PlayersDAO {
         } 
         catch (Exception e) {
         }
+    }
+    
+    public List<Player> getAllPlayers() {
+        List<Player> players = new ArrayList<>();
+        
+        try (
+            Connection conn = DriverManager.getConnection(url, user, password); 
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM players")) { 
+           
+            try (ResultSet rs = ps.executeQuery()) {
+                while(rs.next()) {
+                    players.add(new Player(rs.getInt("id"), rs.getString("name"), rs.getDouble("time_in_sec")));
+                }
+            }
+        } 
+        catch (Exception e) {
+        }
+        
+        return players;
     }
     
     

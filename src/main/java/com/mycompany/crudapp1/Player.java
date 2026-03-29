@@ -18,4 +18,18 @@ public class Player {
         this.name = name;
         this.time_in_sec = time_in_sec;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getTime_in_sec() {
+        return time_in_sec;
+    }
+    
+    
 }
