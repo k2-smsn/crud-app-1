@@ -15,11 +15,13 @@ import java.util.List;
  *
  * @author k2
  */
-public class PlayersDAO {
+public class PlayersDAOImp implements PlayerDAO{
     private final String url = "jdbc:postgresql://localhost:5432/k2";
     private final String user = "k2";
     private final String password = "k20518";
     
+    
+    @Override
     public void insertPlayer(String name, double time_in_sec) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
@@ -34,6 +36,7 @@ public class PlayersDAO {
         }
     }
     
+    @Override
     public Player getPlayerById(int id) {
         Player player = null;
         try (
@@ -57,6 +60,7 @@ public class PlayersDAO {
         return player;
     }
     
+    @Override
     public List<Player> getAllPlayers() {
         List<Player> players = new ArrayList<>();
         
@@ -77,6 +81,7 @@ public class PlayersDAO {
         return players;
     }
     
+    @Override
     public void updateRow(Player p) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
@@ -91,6 +96,7 @@ public class PlayersDAO {
         }
     }
     
+    @Override
     public void updateName(int id, String new_name) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
@@ -104,6 +110,7 @@ public class PlayersDAO {
         }
     }
     
+    @Override
     public void updateTime(int id, double new_time) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
@@ -117,6 +124,7 @@ public class PlayersDAO {
         }
     }
     
+    @Override
     public void deleteRow(int id) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
@@ -128,7 +136,5 @@ public class PlayersDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    
-    
+
 }
