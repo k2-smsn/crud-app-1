@@ -33,6 +33,27 @@ public class PlayersDAO {
         }
     }
     
+    public Player getPLayerById(int id) {
+        Player player = null;
+        try (
+            Connection conn = DriverManager.getConnection(url, user, password); 
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM players WHERE id = ?")) { 
+            ps.setInt(1, id);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                rs.next();
+                player = new Player(rs.getInt("id"), rs.getString("name"), rs.getDouble("time_in_sec"));
+            }
+            catch(Exception e) {
+                System.out.println("entity with that id does not exist");
+            }
+            
+        } 
+        catch (Exception e) {}
+        
+        return player;
+    }
+    
     public List<Player> getAllPlayers() {
         List<Player> players = new ArrayList<>();
         
