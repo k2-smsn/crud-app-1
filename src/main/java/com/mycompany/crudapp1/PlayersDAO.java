@@ -95,6 +95,16 @@ public class PlayersDAO {
         catch (Exception e) {}
     }
     
+    public void deleteRow(int id) {
+        try (
+            Connection conn = DriverManager.getConnection(url, user, password); 
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM players WHERE id = ?")) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } 
+        catch (Exception e) {System.out.println("entity with that id does not exist");}
+    }
+    
     
     
 }
