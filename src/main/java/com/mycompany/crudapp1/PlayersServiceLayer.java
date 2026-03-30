@@ -15,6 +15,17 @@ public class PlayersServiceLayer {
         this.dao = dao;
     }
     
-    
+    public String insertNewPlayer(String name, double time_in_sec) {
+        if (name.equals("")) {
+            return "Name cannot be empty.";
+        }
+        
+        if (time_in_sec <= 0) {
+            return "Time cannot be below zero.";
+        }
+        
+        dao.insertPlayer(name, time_in_sec);
+        return "Player inserted.";
+    }
     
 }
