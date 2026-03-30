@@ -33,6 +33,17 @@ public class PlayersServiceLayer {
         return dao.getPlayerById(Integer.parseInt(id));
     }
     
+    public String deleteRow(String id) {
+        checkId(id);
+        int result = dao.deleteRow(Integer.valueOf(id));
+        
+        if (result == 1) {
+            return "Successfuly deleted.";
+        }
+    
+        return "Player with that id does not exist";
+    }
+    
     private void checkId(String id) {
         try {
             Integer.valueOf(id);
@@ -41,4 +52,6 @@ public class PlayersServiceLayer {
             throw new NumberFormatException();
         }
     }
+    
+    
 }
