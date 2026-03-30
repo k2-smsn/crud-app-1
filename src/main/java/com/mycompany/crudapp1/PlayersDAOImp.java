@@ -22,14 +22,14 @@ public class PlayersDAOImp implements PlayerDAO{
     
     
     @Override
-    public void insertPlayer(String name, double time_in_sec) {
+    public int insertPlayer(String name, double time_in_sec) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
             PreparedStatement ps = conn.prepareStatement("INSERT INTO players(name, time_in_sec) VALUES(?, ?)")) { 
            
             ps.setString(1, name);
             ps.setDouble(2, time_in_sec);
-            ps.executeUpdate();
+            return ps.executeUpdate();
         } 
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -82,14 +82,14 @@ public class PlayersDAOImp implements PlayerDAO{
     }
     
     @Override
-    public void updateRow(Player p) {
+    public int updateRow(Player p) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
             PreparedStatement ps = conn.prepareStatement("UPDATE players SET name = ?, time_in_sec = ? WHERE id = ?")) {
             ps.setString(1, p.getName());
             ps.setDouble(2, p.getTime_in_sec());
             ps.setInt(3, p.getId());
-            ps.executeUpdate();
+            return ps.executeUpdate();
         } 
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -97,13 +97,13 @@ public class PlayersDAOImp implements PlayerDAO{
     }
     
     @Override
-    public void updateName(int id, String new_name) {
+    public int updateName(int id, String new_name) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
             PreparedStatement ps = conn.prepareStatement("UPDATE players SET name = ? WHERE id = ?")) {
             ps.setString(1, new_name);
             ps.setInt(2, id);
-            ps.executeUpdate();
+            return ps.executeUpdate();
         } 
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -111,13 +111,13 @@ public class PlayersDAOImp implements PlayerDAO{
     }
     
     @Override
-    public void updateTime(int id, double new_time) {
+    public int updateTime(int id, double new_time) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
             PreparedStatement ps = conn.prepareStatement("UPDATE players SET time_in_sec = ? WHERE id = ?")) {
             ps.setDouble(1, new_time);
             ps.setInt(2, id);
-            ps.executeUpdate();
+            return ps.executeUpdate();
         } 
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -125,12 +125,12 @@ public class PlayersDAOImp implements PlayerDAO{
     }
     
     @Override
-    public void deleteRow(int id) {
+    public int deleteRow(int id) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
             PreparedStatement ps = conn.prepareStatement("DELETE FROM players WHERE id = ?")) {
             ps.setInt(1, id);
-            ps.executeUpdate();
+            return ps.executeUpdate();
         } 
         catch (Exception e) {
             throw new RuntimeException(e);

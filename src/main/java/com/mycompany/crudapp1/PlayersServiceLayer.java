@@ -28,4 +28,20 @@ public class PlayersServiceLayer {
         return "Player inserted.";
     }
     
+    public String getPlayerById(String id) {
+        if (id.equals("")) {
+            return "Please enter an Id.";
+        }
+        
+        try {
+            Integer.valueOf(id);
+        }
+        catch (NumberFormatException e){
+            return "Id must be an integer above zero";
+        }
+        
+        dao.getPlayerById(Integer.parseInt(id));
+        return "Success";
+    }
+    
 }
