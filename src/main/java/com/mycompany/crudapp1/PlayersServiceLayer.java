@@ -15,33 +15,22 @@ public class PlayersServiceLayer {
         this.dao = dao;
     }
     
-    public String insertNewPlayer(String name, double time_in_sec) {
-        if (name.equals("")) {
-            return "Name cannot be empty.";
-        }
-        
-        if (time_in_sec <= 0) {
-            return "Time cannot be below zero.";
+    public void insertNewPlayer(String name, double time_in_sec) {
+        if (name.equals("") || time_in_sec <= 0) {
+            throw new IllegalArgumentException("Fields cannot be empty");
         }
         
         dao.insertPlayer(name, time_in_sec);
-        return "Player inserted.";
     }
     
-    public Player getPlayerById(String id) {
+    public void getPlayerById(String id) {
         checkId(id);
-        return dao.getPlayerById(Integer.parseInt(id));
+        dao.getPlayerById(Integer.parseInt(id));
     }
     
-    public String deleteRow(String id) {
+    public void deleteRow(String id) {
         checkId(id);
-        int result = dao.deleteRow(Integer.valueOf(id));
-        
-        if (result == 1) {
-            return "Successfuly deleted.";
-        }
-    
-        return "Player with that id does not exist";
+        dao.deleteRow(Integer.valueOf(id));     
     }
     
     private void checkId(String id) {
