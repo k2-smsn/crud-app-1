@@ -23,6 +23,41 @@ public class PlayersServiceLayer {
         dao.insertPlayer(name, time_in_sec);
     }
     
+    public void updateRow(String id, String name, double time_in_sec) {
+        checkId(id);
+        
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be blank,");
+        }
+        
+        if (time_in_sec <= 0) {
+            throw new IllegalArgumentException("Time must be greater than zero");
+        }
+        
+        dao.updateRow(Integer.parseInt(id), name, time_in_sec);
+    }
+    
+    public void updateRow(String id, String name) {
+        checkId(id);
+        
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be blank,");
+        }
+        
+        dao.updateName(Integer.parseInt(id), name);
+    }
+    
+    public void updateRow(String id, double time_in_sec) {
+        checkId(id);
+        
+        if (time_in_sec <= 0) {
+            throw new IllegalArgumentException("Time must be greater than zero");
+        }
+        
+        dao.updateTime(Integer.parseInt(id), time_in_sec);
+    }
+    
+    
     public void getPlayerById(String id) {
         checkId(id);
         dao.getPlayerById(Integer.parseInt(id));
@@ -30,7 +65,7 @@ public class PlayersServiceLayer {
     
     public void deleteRow(String id) {
         checkId(id);
-        dao.deleteRow(Integer.valueOf(id));     
+        dao.deleteRow(Integer.parseInt(id));     
     }
     
     private void checkId(String id) {
@@ -40,7 +75,6 @@ public class PlayersServiceLayer {
         catch (NumberFormatException e){
             throw new NumberFormatException();
         }
+    
     }
-    
-    
 }

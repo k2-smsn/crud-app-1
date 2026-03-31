@@ -11,11 +11,11 @@ import java.util.List;
  * @author k2
  */
 public interface PlayerDAO {
-    void insertPlayer(String name, double time);
+    int insertPlayer(String name, double time);
     Player getPlayerById(int id);
     List<Player> getAllPlayers();
-    void updateRow(Player p);
-    void updateName(int id, String new_name);
-    void updateTime(int id, double new_time);
-    void deleteRow(int id);
+    int updateRow(int id, String new_name, double time_in_sec);
+    int updateName(int id, String new_name);
+    int updateTime(int id, double new_time);
+    int deleteRow(int id);
 }

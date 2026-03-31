@@ -82,13 +82,13 @@ public class PlayersDAOImp implements PlayerDAO{
     }
     
     @Override
-    public int updateRow(Player p) {
+    public int updateRow(int id, String name, double time_in_sec) {
         try (
             Connection conn = DriverManager.getConnection(url, user, password); 
             PreparedStatement ps = conn.prepareStatement("UPDATE players SET name = ?, time_in_sec = ? WHERE id = ?")) {
-            ps.setString(1, p.getName());
-            ps.setDouble(2, p.getTime_in_sec());
-            ps.setInt(3, p.getId());
+            ps.setString(1, name);
+            ps.setDouble(2, time_in_sec);
+            ps.setInt(3, id);
             return ps.executeUpdate();
         } 
         catch (Exception e) {
