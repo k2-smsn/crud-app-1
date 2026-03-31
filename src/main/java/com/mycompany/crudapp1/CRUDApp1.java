@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import ui.MainFrame;
 
 /**
  *
@@ -17,14 +18,7 @@ import java.util.List;
 public class CRUDApp1 {
     
     public static void main(String[] args) throws SQLException {
-        PlayersDAOImp dao = new PlayersDAOImp();
-        
-        List<Player> ps = dao.getAllPlayers();
-        
-        System.out.println("ID  NAME     TIME_IN_SEC");
-        for (Player p : ps) {
-            System.out.println(p.getId() + "   " + p.getName() + " " + p.getTime_in_sec());
-        }
+        MainFrame main = new MainFrame();
         
     }
 }
