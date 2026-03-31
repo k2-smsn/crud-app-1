@@ -12,11 +12,13 @@ import com.mycompany.crudapp1.PlayersServiceLayer;
  * @author k2
  */
 public class InsertPanel extends javax.swing.JPanel {
-
+    MainFrame main;
     /**
      * Creates new form InsertPanel
+     * @param main
      */
-    public InsertPanel() {
+    public InsertPanel(MainFrame main) {
+        this.main = main;
         initComponents();
     }
 
@@ -35,7 +37,7 @@ public class InsertPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        warningLabel = new javax.swing.JLabel();
 
         nameField.addActionListener(this::nameFieldActionPerformed);
 
@@ -47,9 +49,10 @@ public class InsertPanel extends javax.swing.JPanel {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Back");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("-");
+        warningLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        warningLabel.setText("-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -69,7 +72,7 @@ public class InsertPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addComponent(jButton2)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(32, 32, 32))
@@ -87,7 +90,7 @@ public class InsertPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jLabel3))
+                    .addComponent(warningLabel))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -97,12 +100,25 @@ public class InsertPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nameFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String name = nameField.getText();
-        double time_in_sec = Double.parseDouble(timeField.getText());
-        
         PlayersServiceLayer pService = new PlayersServiceLayer(new PlayersDAOImp());
-        pService.insertNewPlayer(name, time_in_sec);
+        
+        try {
+            String name = nameField.getText();
+            double time_in_sec = Double.parseDouble(timeField.getText());
+            pService.insertNewPlayer(name, time_in_sec);
+            warningLabel.setText("-");
+        } catch (Exception e) {
+            warningLabel.setText(e.getMessage());
+        }
+        
+        
+        nameField.setText("");
+        timeField.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        main.showPanel("HOME");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -110,8 +126,8 @@ public class InsertPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField timeField;
+    private javax.swing.JLabel warningLabel;
     // End of variables declaration//GEN-END:variables
 }

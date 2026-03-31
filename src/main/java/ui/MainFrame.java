@@ -15,8 +15,12 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame{
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    
+    private InsertPanel insertPanel = new InsertPanel(this);
 
     public MainFrame() {
+        
+        
         setTitle("PLAYER DATA HANDLER");
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,6 +29,8 @@ public class MainFrame extends JFrame{
 
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout); 
+        
+        mainPanel.add(insertPanel, "INSERT");
 
         setContentPane(mainPanel);
         setVisible(true);
