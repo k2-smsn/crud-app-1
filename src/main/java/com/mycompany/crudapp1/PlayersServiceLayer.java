@@ -4,6 +4,8 @@
  */
 package com.mycompany.crudapp1;
 
+import java.util.List;
+
 /**
  *
  * @author k2
@@ -82,9 +84,13 @@ public class PlayersServiceLayer {
 
     }
     
-    public void getPlayerById(String id) {
+    public List<Player> getAllPlayers() {
+        return dao.getAllPlayers();
+    }
+    
+    public Player getPlayerById(String id) {
         checkId(id);
-        dao.getPlayerById(Integer.parseInt(id));
+        return dao.getPlayerById(Integer.parseInt(id));
     }
     
     public void deleteRow(String id) {

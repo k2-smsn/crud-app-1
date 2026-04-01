@@ -20,6 +20,7 @@ public class MainFrame extends JFrame{
     private final InsertPanel insertPanel = new InsertPanel(this);
     private final UpdatePanel updatePanel = new UpdatePanel(this);
     private final DeletePanel deletePanel = new DeletePanel(this);
+    private final ViewPanel viewPanel = new ViewPanel(this);
 
     public MainFrame() {
         setTitle("PLAYER DATA HANDLER");
@@ -35,6 +36,7 @@ public class MainFrame extends JFrame{
         mainPanel.add(insertPanel, "INSERT");
         mainPanel.add(updatePanel, "UPDATE");
         mainPanel.add(deletePanel, "DELETE");
+        mainPanel.add(viewPanel, "READ");
         
 
         setContentPane(mainPanel);

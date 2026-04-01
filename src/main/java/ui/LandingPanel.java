@@ -37,6 +37,7 @@ public class LandingPanel extends javax.swing.JPanel {
         createBtn.addActionListener(this::createBtnActionPerformed);
 
         readBtn.setText("Read");
+        readBtn.addActionListener(this::readBtnActionPerformed);
 
         updateBtn.setText("Update");
         updateBtn.addActionListener(this::updateBtnActionPerformed);
@@ -85,6 +86,10 @@ public class LandingPanel extends javax.swing.JPanel {
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         main.showPanel("DELETE");
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
+        main.showPanel("READ");
+    }//GEN-LAST:event_readBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
