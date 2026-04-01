@@ -15,12 +15,25 @@ public class PlayersServiceLayer {
         this.dao = dao;
     }
     
-    public void insertNewPlayer(String name, double time_in_sec) {
-        if (name.equals("") || time_in_sec <= 0) {
+    public void insertNewPlayer(String name, String time_in_sec) {
+        double time;
+        
+        if (name.isBlank() || time_in_sec.isBlank()) {
             throw new IllegalArgumentException("Fields cannot be empty");
         }
         
-        dao.insertPlayer(name, time_in_sec);
+        try {
+            time = Double.parseDouble(time_in_sec);
+        }
+        catch(Exception e) {
+            throw new IllegalArgumentException("time must be a decimal");
+        }
+        
+        if (time <= 0) {
+            throw new IllegalArgumentException("time must be greater than zero");
+        }
+        
+        dao.insertPlayer(name, time);
     }
     
     public void updateRow(String id, String name, double time_in_sec) {

@@ -22,7 +22,7 @@ public class MainFrame extends JFrame{
         
         
         setTitle("PLAYER DATA HANDLER");
-        setSize(900, 600);
+        setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

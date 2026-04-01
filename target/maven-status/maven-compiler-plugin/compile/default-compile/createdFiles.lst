@@ -5,3 +5,4 @@ com/mycompany/crudapp1/CRUDApp1.class
 com/mycompany/crudapp1/PlayerDAO.class
 com/mycompany/crudapp1/Player.class
 com/mycompany/crudapp1/PlayersServiceLayer.class
+ui/LandingPanel.class
