@@ -16,6 +16,7 @@ public class MainFrame extends JFrame{
     private CardLayout cardLayout;
     private JPanel mainPanel;
     
+    private LandingPanel landingPanel = new LandingPanel(this);
     private InsertPanel insertPanel = new InsertPanel(this);
 
     public MainFrame() {
@@ -30,6 +31,7 @@ public class MainFrame extends JFrame{
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout); 
         
+        mainPanel.add(landingPanel, "LANDING");
         mainPanel.add(insertPanel, "INSERT");
 
         setContentPane(mainPanel);

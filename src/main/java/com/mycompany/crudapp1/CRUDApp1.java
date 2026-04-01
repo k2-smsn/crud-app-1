@@ -11,9 +11,9 @@ import ui.MainFrame;
  * @author k2
  */
 public class CRUDApp1 {
-    
+
     public static void main(String[] args) throws SQLException {
         MainFrame main = new MainFrame();
-        
+
     }
 }

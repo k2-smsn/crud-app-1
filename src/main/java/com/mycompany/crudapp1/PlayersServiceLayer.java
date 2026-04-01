@@ -19,35 +19,47 @@ public class PlayersServiceLayer {
         double time;
         
         if (name.isBlank() || time_in_sec.isBlank()) {
-            throw new IllegalArgumentException("Fields cannot be empty");
+            throw new IllegalArgumentException("Fields cannot be empty.");
         }
         
         try {
             time = Double.parseDouble(time_in_sec);
         }
         catch(Exception e) {
-            throw new IllegalArgumentException("time must be a decimal");
+            throw new IllegalArgumentException("time must be a decimal.");
         }
         
         if (time <= 0) {
-            throw new IllegalArgumentException("time must be greater than zero");
+            throw new IllegalArgumentException("time must be greater than zero.");
         }
         
         dao.insertPlayer(name, time);
     }
     
-    public void updateRow(String id, String name, double time_in_sec) {
+    public void updateRow(String id, String name, String time_in_sec) {
+        double time;
+        
+        if (name.isBlank() || time_in_sec.isBlank()) {
+            throw new IllegalArgumentException("Fields cannot be blank.");
+        }
+        
         checkId(id);
         
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be blank,");
+        try {
+            time = Double.parseDouble(time_in_sec);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Time must be a decimal.");
         }
         
-        if (time_in_sec <= 0) {
-            throw new IllegalArgumentException("Time must be greater than zero");
+        if (time <= 0) {
+            throw new IllegalArgumentException("Time must be greater than zero.");
         }
         
-        dao.updateRow(Integer.parseInt(id), name, time_in_sec);
+        int i = dao.updateRow(Integer.parseInt(id), name, time);
+        
+        if (i == 0) {
+            throw new IllegalArgumentException("PLayer with that id does not exist.");
+        }
     }
     
     public void updateRow(String id, String name) {
@@ -57,17 +69,33 @@ public class PlayersServiceLayer {
             throw new IllegalArgumentException("Name cannot be blank,");
         }
         
-        dao.updateName(Integer.parseInt(id), name);
+        int i = dao.updateName(Integer.parseInt(id), name);
+        
+        if (i == 0) {
+            throw new IllegalArgumentException("PLayer with that id does not exist.");
+        }
     }
     
-    public void updateRow(String id, double time_in_sec) {
+    public void updateRow(String id, String time_in_sec, boolean timeOnly) {
+        double time;
+        
         checkId(id);
         
-        if (time_in_sec <= 0) {
+        try {
+            time = Double.parseDouble(time_in_sec);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Time must be a decimal.");
+        }
+        
+        if (time <= 0) {
             throw new IllegalArgumentException("Time must be greater than zero");
         }
         
-        dao.updateTime(Integer.parseInt(id), time_in_sec);
+        int i = dao.updateTime(Integer.parseInt(id), time);
+        
+        if (i == 0) {
+            throw new IllegalArgumentException("PLayer with that id does not exist.");
+        }
     }
     
     
@@ -86,7 +114,7 @@ public class PlayersServiceLayer {
             Integer.valueOf(id);
         }
         catch (NumberFormatException e){
-            throw new NumberFormatException();
+            throw new NumberFormatException("Invalid id");
         }
     
     }
