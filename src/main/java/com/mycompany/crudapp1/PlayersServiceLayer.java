@@ -82,52 +82,18 @@ public class PlayersServiceLayer {
 
     }
     
-    /*
-    public void updateRow(String id, String name) {
-        checkId(id);
-        
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be blank,");
-        }
-        
-        int i = dao.updateName(Integer.parseInt(id), name);
-        
-        if (i == 0) {
-            throw new IllegalArgumentException("PLayer with that id does not exist.");
-        }
-    }
-    
-    public void updateRow(String id, String time_in_sec, boolean timeOnly) {
-        double time;
-        
-        checkId(id);
-        
-        try {
-            time = Double.parseDouble(time_in_sec);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Time must be a decimal.");
-        }
-        
-        if (time <= 0) {
-            throw new IllegalArgumentException("Time must be greater than zero");
-        }
-        
-        int i = dao.updateTime(Integer.parseInt(id), time);
-        
-        if (i == 0) {
-            throw new IllegalArgumentException("PLayer with that id does not exist.");
-        }
-    }
-    */
-    
     public void getPlayerById(String id) {
         checkId(id);
         dao.getPlayerById(Integer.parseInt(id));
     }
     
     public void deleteRow(String id) {
+        int i;
         checkId(id);
-        dao.deleteRow(Integer.parseInt(id));     
+        i = dao.deleteRow(Integer.parseInt(id));
+        if (i == 0) {
+            throw new IllegalArgumentException("PLayer with that id does not exist.");
+        }   
     }
     
     private void checkId(String id) {

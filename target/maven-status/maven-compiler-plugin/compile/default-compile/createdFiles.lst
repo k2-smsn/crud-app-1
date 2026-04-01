@@ -4,6 +4,7 @@ ui/MainFrame.class
 com/mycompany/crudapp1/CRUDApp1.class
 ui/UpdatePanel.class
 com/mycompany/crudapp1/PlayerDAO.class
+ui/DeletePanel.class
 com/mycompany/crudapp1/Player.class
 com/mycompany/crudapp1/PlayersServiceLayer.class
 ui/LandingPanel.class

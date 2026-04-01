@@ -3,6 +3,7 @@
 /home/k2/NetBeansProjects/CRUDApp1/src/main/java/com/mycompany/crudapp1/PlayerDAO.java
 /home/k2/NetBeansProjects/CRUDApp1/src/main/java/com/mycompany/crudapp1/PlayersDAOImp.java
 /home/k2/NetBeansProjects/CRUDApp1/src/main/java/com/mycompany/crudapp1/PlayersServiceLayer.java
+/home/k2/NetBeansProjects/CRUDApp1/src/main/java/ui/DeletePanel.java
 /home/k2/NetBeansProjects/CRUDApp1/src/main/java/ui/InsertPanel.java
 /home/k2/NetBeansProjects/CRUDApp1/src/main/java/ui/LandingPanel.java
 /home/k2/NetBeansProjects/CRUDApp1/src/main/java/ui/MainFrame.java

@@ -19,6 +19,7 @@ public class MainFrame extends JFrame{
     private final LandingPanel landingPanel = new LandingPanel(this);
     private final InsertPanel insertPanel = new InsertPanel(this);
     private final UpdatePanel updatePanel = new UpdatePanel(this);
+    private final DeletePanel deletePanel = new DeletePanel(this);
 
     public MainFrame() {
         setTitle("PLAYER DATA HANDLER");
@@ -33,6 +34,7 @@ public class MainFrame extends JFrame{
         mainPanel.add(landingPanel, "LANDING");
         mainPanel.add(insertPanel, "INSERT");
         mainPanel.add(updatePanel, "UPDATE");
+        mainPanel.add(deletePanel, "DELETE");
         
 
         setContentPane(mainPanel);

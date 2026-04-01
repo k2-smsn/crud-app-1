@@ -42,6 +42,7 @@ public class LandingPanel extends javax.swing.JPanel {
         updateBtn.addActionListener(this::updateBtnActionPerformed);
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(this::deleteBtnActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,6 +81,10 @@ public class LandingPanel extends javax.swing.JPanel {
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         main.showPanel("UPDATE");
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        main.showPanel("DELETE");
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
