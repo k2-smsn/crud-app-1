@@ -2,6 +2,7 @@ com/mycompany/crudapp1/PlayersDAOImp.class
 ui/InsertPanel.class
 ui/MainFrame.class
 com/mycompany/crudapp1/CRUDApp1.class
+ui/UpdatePanel.class
 com/mycompany/crudapp1/PlayerDAO.class
 com/mycompany/crudapp1/Player.class
 com/mycompany/crudapp1/PlayersServiceLayer.class

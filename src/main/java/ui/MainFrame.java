@@ -13,15 +13,14 @@ import javax.swing.JPanel;
  * @author k2
  */
 public class MainFrame extends JFrame{
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
+    private final CardLayout cardLayout;
+    private final JPanel mainPanel;
     
-    private LandingPanel landingPanel = new LandingPanel(this);
-    private InsertPanel insertPanel = new InsertPanel(this);
+    private final LandingPanel landingPanel = new LandingPanel(this);
+    private final InsertPanel insertPanel = new InsertPanel(this);
+    private final UpdatePanel updatePanel = new UpdatePanel(this);
 
     public MainFrame() {
-        
-        
         setTitle("PLAYER DATA HANDLER");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,6 +32,8 @@ public class MainFrame extends JFrame{
         
         mainPanel.add(landingPanel, "LANDING");
         mainPanel.add(insertPanel, "INSERT");
+        mainPanel.add(updatePanel, "UPDATE");
+        
 
         setContentPane(mainPanel);
         setVisible(true);
